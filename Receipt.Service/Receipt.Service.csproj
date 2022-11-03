@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Receipt.Core\Receipt.Core.csproj" />
+    <ProjectReference Include="..\Receipt.Db\Receipt.Db.csproj" />
+  </ItemGroup>
+
+</Project>
