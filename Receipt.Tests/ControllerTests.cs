@@ -7,7 +7,6 @@ using Receipt.Core.Validations;
 using ReceiptApi.Controllers;
 using System;
 using System.Collections.Generic;
-using FluentAssertions;
 
 namespace Receipt.Tests
 {
@@ -89,10 +88,10 @@ namespace Receipt.Tests
         public void GetReceiptsListFromDateToDate_GetReceiptsListFromDateToDate_ShouldReturnReceiptsWithinDateRange()
         {
             var from = new DateTime(2022, 11, 1);
-            var to = new DateTime(2022,11, 3);
-            
-            _receiptServiceMock.Setup(r => r.GetReceiptsFromDateToDate(from,to)).Returns(_receiptsList);
-            var actionResult = _controller.GetReceiptsByDateRange(from,to) as ObjectResult;
+            var to = new DateTime(2022, 11, 3);
+
+            _receiptServiceMock.Setup(r => r.GetReceiptsFromDateToDate(from, to)).Returns(_receiptsList);
+            var actionResult = _controller.GetReceiptsByDateRange(from, to) as ObjectResult;
 
             Assert.AreEqual(actionResult.Value as List<Receipts>, _receiptsList);
         }
@@ -105,7 +104,7 @@ namespace Receipt.Tests
 
             var actionResult = _controller.GetReceiptsByDateRange(from, to) as BadRequestObjectResult;
 
-            Assert.AreEqual(typeof(BadRequestObjectResult) , typeof(BadRequestObjectResult));
+            Assert.AreEqual(typeof(BadRequestObjectResult), typeof(BadRequestObjectResult));
         }
 
         [TestMethod]
