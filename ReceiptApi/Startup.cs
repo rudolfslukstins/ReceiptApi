@@ -10,6 +10,7 @@ using Receipt.Db;
 using Receipt.Core.Services;
 using Receipt.Core.Validations;
 using Receipt.Service;
+using System;
 
 namespace ReceiptApi
 {
@@ -31,10 +32,7 @@ namespace ReceiptApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ReceiptApi", Version = "v1" });
             });
-            services.AddDbContext<ReceiptDbContext>(options =>
-            {
-                options.UseSqlite("Filename=Receipt.db");
-            });
+            services.AddDbContext<ReceiptDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IReceiptService, ReceiptService>();
             services.AddScoped<ReceiptValidator>();
             services.AddScoped<ItemValidator>();
