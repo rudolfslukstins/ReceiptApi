@@ -17,9 +17,9 @@ The database should be in WEB project root.
 
 For Receipt controller:
 
-Created a method to create a new Receipt.
-Created a method to get all created receipts.
-Created a method to get receipt by id.
-Created a method to get filtered receipts by creation date range.
-Created a method to filtered receipts by product name - finds all receipts containing an item with the name containing text.
-Created a method to delete receipt by id.
+1. Created a method to create a new Receipt.
+2. Created a method to get all created receipts.
+3. Created a method to get receipt by id.
+4. Created a method to get filtered receipts by creation date range.
+5. Created a method to filtered receipts by product name - finds all receipts containing an item with the name containing text.
+6. Created a method to delete receipt by id.
