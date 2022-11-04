@@ -10,7 +10,7 @@ namespace Receipt.Service
 {
     public class ReceiptService : EntityService<Receipts>, IReceiptService
     {
-        public ReceiptService(IReceiptDbContext context) : base(context)
+        public ReceiptService(ReceiptDbContext context) : base(context)
         {
         }
 
@@ -33,14 +33,17 @@ namespace Receipt.Service
                 .Include(r => r.ItemsList)
                 .FirstOrDefault(r => r.Id == id);
 
-            foreach (var item in receipt.ItemsList)
+            if (receipt != null)
             {
-                _context.Items.Remove(item);
+                foreach (var item in receipt.ItemsList)
+                {
+                    _context.Items.Remove(item);
+                }
+
+                _context.SaveChanges();
+
+                Delete(receipt);
             }
-
-            _context.SaveChanges();
-
-            Delete(receipt);
         }
 
         public List<Receipts> GetReceiptsFromDateToDate(DateTime from, DateTime to)

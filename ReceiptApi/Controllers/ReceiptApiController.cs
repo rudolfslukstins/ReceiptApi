@@ -33,12 +33,11 @@ namespace ReceiptApi.Controllers
         {
             var receipt = _receiptService.GetReceiptsByIdWithItems(id);
 
-            if (_receiptValidator.Validate(receipt).IsValid)
-            {
-                return Ok(receipt);
-            }
+            
+            return Ok(receipt);
+            
 
-            return NotFound(id);
+           
         }
 
 

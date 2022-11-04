@@ -32,7 +32,7 @@ namespace ReceiptApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ReceiptApi", Version = "v1" });
             });
-            services.AddDbContext<ReceiptDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ReceiptDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("Receipt")));
             services.AddScoped<IReceiptService, ReceiptService>();
             services.AddScoped<ReceiptValidator>();
             services.AddScoped<ItemValidator>();

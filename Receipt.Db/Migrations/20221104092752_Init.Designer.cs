@@ -9,7 +9,7 @@ using Receipt.Db;
 namespace Receipt.Db.Migrations
 {
     [DbContext(typeof(ReceiptDbContext))]
-    [Migration("20221103130858_Init")]
+    [Migration("20221104092752_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
