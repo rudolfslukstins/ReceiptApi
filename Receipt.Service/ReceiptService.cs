@@ -10,14 +10,14 @@ namespace Receipt.Service
 {
     public class ReceiptService : EntityService<Receipts>, IReceiptService
     {
-        public ReceiptService(ReceiptDbContext context) : base(context)
+        public ReceiptService(IReceiptDbContext context) : base(context)
         {
         }
 
         public Receipts CreateReceipt(DateTime createdOn, string items)
         {
             var itemsList = MakeListOfItems(items);
-            var receipt = new Receipts()
+            var receipt = new Receipts
             {
                 CreatedOn = createdOn,
                 ItemsList = itemsList

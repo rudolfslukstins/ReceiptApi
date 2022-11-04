@@ -12,5 +12,6 @@ namespace Receipt.Core.Services
         List<Receipts> GetReceiptsByProductName(string productName);
         Receipts GetReceiptsByIdWithItems(int id);
         List<Receipts> GetAllReceipts();
+        List<Items> MakeListOfItems(string items);
     }
 }

@@ -27,7 +27,7 @@ namespace ReceiptApi.Controllers
             return Created("", receipt);
         }
 
-        [Route("Get-receipt-by-id/{id}")]
+        [Route("Get-Receipt-By-Id/{id}")]
         [HttpGet]
         public IActionResult GetReceiptById(int id)
         {
@@ -42,7 +42,7 @@ namespace ReceiptApi.Controllers
         }
 
 
-        [Route("Get-all-receipts")]
+        [Route("Get-All-Receipts")]
         [HttpGet]
         public IActionResult GetAllReceipts()
         {
@@ -51,7 +51,7 @@ namespace ReceiptApi.Controllers
             return Ok(receipts);
         }
 
-        [Route("Get-Receipts-by-date-range")]
+        [Route("Get-Receipts-By-Date-Range")]
         [HttpGet]
         public IActionResult GetReceiptsByDateRange(DateTime from, DateTime to)
         {
@@ -60,7 +60,7 @@ namespace ReceiptApi.Controllers
             return Ok(receipts);
         }
 
-        [Route("Get-Receipts-by-product-name/{productName}")]
+        [Route("Get-Receipts-By-Product-Name/{productName}")]
         [HttpGet]
         public IActionResult GetReceiptsByDateRange(string productName)
         {
@@ -74,14 +74,13 @@ namespace ReceiptApi.Controllers
         public IActionResult DeleteReceipt(int id)
         {
             var receipt = _receiptService.GetReceiptsByIdWithItems(id);
-            
-            if (_receiptValidator.Validate(receipt).IsValid)
-            {
-                _receiptService.DeleteReceipt(id);
-                return Ok(id);
-            }
 
-            return NotFound(id);
+            if (!_receiptValidator.Validate(receipt).IsValid)
+                return NotFound(id);
+
+            _receiptService.DeleteReceipt(id);
+            return Ok(id);
+
         }
     }
 }

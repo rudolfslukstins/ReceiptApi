@@ -9,9 +9,9 @@ namespace Receipt.Service
 {
     public class DbService : IDbService
     {
-        protected ReceiptDbContext _context;
+        protected IReceiptDbContext _context;
 
-        public DbService(ReceiptDbContext context)
+        public DbService(IReceiptDbContext context)
         {
             _context = context;
         }
