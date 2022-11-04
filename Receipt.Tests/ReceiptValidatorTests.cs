@@ -38,7 +38,6 @@ namespace Receipt.Tests
                 Id = 1
             };
             items.Add(item);
-
             var receipt = new Receipts
             {
                 CreatedOn = DateTime.Now,
@@ -48,6 +47,40 @@ namespace Receipt.Tests
 
             var result = _receiptValidator.Validate(receipt).IsValid;
             result.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void ReceiptValidator_SearchReceiptWhenHasNoDate_ShouldBeFalse()
+        {
+            var items = new List<Items>();
+            var item = new Items
+            {
+                ProductName = "C#",
+                Id = 1
+            };
+            items.Add(item);
+            var receipt = new Receipts
+            {
+                Id = 1,
+                ItemsList = items
+            };
+
+            var result = _receiptValidator.Validate(receipt).IsValid;
+            result.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void ReceiptValidator_SearchReceiptWhenHasNoItems_ShouldBeFalse()
+        {
+
+            var receipt = new Receipts
+            {
+                CreatedOn = DateTime.Now,
+                Id = 1,
+            };
+
+            var result = _receiptValidator.Validate(receipt).IsValid;
+            result.Should().BeFalse();
         }
     }
 }

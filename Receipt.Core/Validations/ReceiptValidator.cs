@@ -11,6 +11,5 @@ namespace Receipt.Core.Validations
             RuleFor(receipt => receipt.CreatedOn).NotEmpty().NotNull();
             RuleFor(receipt => receipt.ItemsList).NotEmpty().NotNull();
         }
-        
     }
 }

@@ -35,5 +35,14 @@ namespace Receipt.Tests
             var result = _validator.Validate(_items).IsValid;
             result.Should().BeTrue();
         }
+
+        [TestMethod]
+        public void ItemsValidator_SearchItemWhenProductNameIsEmpty_ShouldBeFalse()
+        {
+            _items.Id = 1;
+            _items.ProductName = "";
+            var result = _validator.Validate(_items).IsValid;
+            result.Should().BeFalse();
+        }
     }
 }

@@ -14,13 +14,14 @@ namespace Receipt.Service
         {
         }
 
-        public Receipts CreateReceipt(DateTime createdOn, string items)
+        public Receipts CreateReceipt(DateTime createdOn, List<Items> products)
         {
-            var itemsList = MakeListOfItems(items);
+            
+
             var receipt = new Receipts
             {
                 CreatedOn = createdOn,
-                ItemsList = itemsList
+                ItemsList = products,
             };
             Create(receipt);
 
@@ -58,7 +59,7 @@ namespace Receipt.Service
             return _context.Receipts
                 .Include(r => r.ItemsList)
                 .Where(r => r.ItemsList
-                    .Any(i => i.ProductName == searchItem)).ToList();
+                    .Any(i => i.ProductName.Contains(searchItem))).ToList();
         }
 
         public List<Receipts> GetAllReceipts()
@@ -71,32 +72,6 @@ namespace Receipt.Service
             return _context.Receipts
                 .Include(r => r.ItemsList)
                 .FirstOrDefault(r => r.Id == id);
-        }
-
-        public List<Items> MakeListOfItems(string items)
-        {
-            var itemsList = new List<Items>();
-            string[] list = items.Split(' ');
-
-            foreach (var item in list)
-            {
-                var newItem = new Items
-                {
-                    ProductName = item
-                };
-
-                if (_context.Items.Any(i => i.ProductName.Contains(item)))
-                {
-                    var existingItem = _context.Items.FirstOrDefault(i => i.ProductName == newItem.ProductName);
-                    itemsList.Add(existingItem);
-                }
-                else
-                {
-                    itemsList.Add(newItem);
-                }
-            }
-
-            return itemsList;
         }
     }
 }
