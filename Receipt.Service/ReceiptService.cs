@@ -10,7 +10,7 @@ namespace Receipt.Service
 {
     public class ReceiptService : EntityService<Receipts>, IReceiptService
     {
-        public ReceiptService(ReceiptDbContext context) : base(context)
+        public ReceiptService(IReceiptDbContext context) : base(context)
         {
         }
 

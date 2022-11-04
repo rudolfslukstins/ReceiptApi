@@ -8,7 +8,7 @@ namespace Receipt.Service
 {
     public class EntityService<T> : DbService, IEntityService<T> where T : Entity
     {
-        public EntityService(ReceiptDbContext context) : base(context)
+        public EntityService(IReceiptDbContext context) : base(context)
         {
         }
 
